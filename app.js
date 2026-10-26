@@ -57,4 +57,48 @@ function procesarIncidente(incidente) {
     return recursosNecesarios;
 }
 
+function ejecutarSistema(incidentes) {
+    console.log(" ===== INICIO DEL SISTEMA EME-JS =====");
 
+    let recursosDisponibles = RECURSOS_INICIALES;
+    debugLog(`Recursos iniciales disponibles: ${recursosDisponibles}`);
+
+    for (let i = 0; i < incidente.length; i++) {
+        const incidente = incidentes[i];
+
+        if (recursosDisponibles <= 0) {
+            console.warn(
+                "No quedan recursos disponibles. " +
+                "El sistema se detiene."
+            );
+            break;
+        }
+
+        debugger;
+
+        if (incidente.resuelta) {
+            debugLog(
+                `Incidencia #${incidente.id} ya resuelta. ` +
+                `Se ignora mediante continue.`
+            );
+            continue;
+        }
+
+        debugLog(
+            `Procesando incidencia #${incidente.id} ` +
+            `(posición ${i}).`
+        );
+        const recursosUsados = procesarIncidente(incidente);
+        recursosDisponibles -= recursosUsados;
+        debugLog(`Recursos restantes: ${recursosDisponibles}`);
+        console.log(
+            `Estado del parque: ` +
+            `${recursosDisponibles} recursos disponibles.`
+        );
+    }
+
+    console.log(" ===== FIN DEL SISTEMA EME-JS =====");
+    return recursosDisponibles;
+}
+
+ejecutarSistema(loteIncidentes);
