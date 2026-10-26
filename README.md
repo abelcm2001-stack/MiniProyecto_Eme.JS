@@ -61,7 +61,7 @@ El sistema recorre las incidencias mediante un bucle **for** y toma decisiones m
 - Las incidencias con gravedad **5** generan una **alerta máxima**.
 - Las incidencias con gravedad **3** o **4** generan una **alerta alta**; las de gravedad inferior generan una **alerta normal**.
 - Las incidencias de gravedad **5** consumen 2 recursos, las de gravedad **3** o **4** consumen 1 y las de gravedad inferior no consumen recursos.
-- Cuando los recursos disponibles llegan a **0**, el sistema utiliza **break** para detener el procesamiento.
+- Cuando no quedan recursos suficientes para atender la siguiente incidencia, el sistema utiliza **break** para detener el procesamiento sin dejar el contador de recursos en negativo.
 
 ---
 
@@ -112,7 +112,7 @@ También se han incluido instrucciones **debugger** en puntos críticos del proc
 
 ## Documentación JSDoc
 
-Las funciones todavía no cuentan con documentación JSDoc. Para documentarlas se pueden utilizar etiquetas como **@param**, **@returns** y **@type**, que describen los parámetros, los valores de retorno y los tipos utilizados.
+Las funciones principales incluyen comentarios JSDoc en el propio archivo **app.js**. Las etiquetas **@param** describen los parámetros y sus tipos, mientras que **@returns** indica el tipo y el significado del valor devuelto.
 
 ---
 

@@ -47,12 +47,12 @@ function calcularRecursos(gravedad) {
  * @param {string} incidente.descripcion - Descripción del incidente.
  * @param {number} incidente.gravedad - Nivel de gravedad del incidente.
  * @param {boolean} incidente.resuelta - Indica si el incidente ya está resuelto.
+ * @param {number} recursosNecesarios - Recursos calculados para atender el incidente.
  * @returns {number} Número de recursos necesarios para atender el incidente.
  */
-function procesarIncidente(incidente) {
+function procesarIncidente(incidente, recursosNecesarios) {
     debugger;
 
-    const recursosNecesarios = calcularRecursos(incidente.gravedad);
     debugLog(
         `Incidencia ${incidente.id}: ` +
         `${incidente.descripcion} | ` +
@@ -117,11 +117,20 @@ function ejecutarSistema(incidentes) {
             continue;
         }
 
+        const recursosNecesarios = calcularRecursos(incidente.gravedad);
+        if (recursosNecesarios > recursosDisponibles) {
+            console.warn(
+                `No hay recursos suficientes para atender la incidencia #${incidente.id}. ` +
+                "El sistema se detiene."
+            );
+            break;
+        }
+
         debugLog(
             `Procesando incidencia #${incidente.id} ` +
             `(posición ${i}).`
         );
-        const recursosUsados = procesarIncidente(incidente);
+        const recursosUsados = procesarIncidente(incidente, recursosNecesarios);
         recursosDisponibles -= recursosUsados;
         debugLog(`Recursos restantes: ${recursosDisponibles}`);
         console.log(
