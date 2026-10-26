@@ -24,6 +24,7 @@ function calcularRecursos(gravedad) {
     if (gravedad >= 3) {
         return 1;
     }
+    return 0;
 }
 
 function procesarIncidente(incidente) {
@@ -63,7 +64,7 @@ function ejecutarSistema(incidentes) {
     let recursosDisponibles = RECURSOS_INICIALES;
     debugLog(`Recursos iniciales disponibles: ${recursosDisponibles}`);
 
-    for (let i = 0; i < incidente.length; i++) {
+    for (let i = 0; i < incidentes.length; i++) {
         const incidente = incidentes[i];
 
         if (recursosDisponibles <= 0) {
