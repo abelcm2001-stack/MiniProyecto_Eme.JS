@@ -11,12 +11,24 @@ const loteIncidentes = [
     { id: 107, descripcion: "Rescate en ascensor bloqueado", gravedad: 2, resuelta: false }
 ];
 
+/**
+ * Muestra un mensaje en la consola cuando el modo de depuración está activado.
+ *
+ * @param {string} mensaje - Texto que se mostrará en la consola.
+ * @returns {void}
+ */
 function debugLog(mensaje) {
     if (DEBUGMODE) {
         console.log(mensaje);
     }
 }
 
+/**
+ * Calcula los recursos necesarios para atender un incidente según su gravedad.
+ *
+ * @param {number} gravedad - Nivel de gravedad del incidente.
+ * @returns {number} Número de recursos necesarios: 0, 1 o 2.
+ */
 function calcularRecursos(gravedad) {
     if (gravedad >= 5) {
         return 2;
@@ -27,6 +39,16 @@ function calcularRecursos(gravedad) {
     return 0;
 }
 
+/**
+ * Registra las alertas de un incidente y determina los recursos que requiere.
+ *
+ * @param {Object} incidente - Incidente que se va a procesar.
+ * @param {number} incidente.id - Identificador único del incidente.
+ * @param {string} incidente.descripcion - Descripción del incidente.
+ * @param {number} incidente.gravedad - Nivel de gravedad del incidente.
+ * @param {boolean} incidente.resuelta - Indica si el incidente ya está resuelto.
+ * @returns {number} Número de recursos necesarios para atender el incidente.
+ */
 function procesarIncidente(incidente) {
     debugger;
 
@@ -58,6 +80,16 @@ function procesarIncidente(incidente) {
     return recursosNecesarios;
 }
 
+/**
+ * Ejecuta el sistema de atención de incidentes y consume los recursos disponibles.
+ *
+ * @param {Object[]} incidentes - Lista de incidentes que se procesarán.
+ * @param {number} incidentes[].id - Identificador único del incidente.
+ * @param {string} incidentes[].descripcion - Descripción del incidente.
+ * @param {number} incidentes[].gravedad - Nivel de gravedad del incidente.
+ * @param {boolean} incidentes[].resuelta - Indica si el incidente ya está resuelto.
+ * @returns {number} Recursos disponibles al finalizar la ejecución.
+ */
 function ejecutarSistema(incidentes) {
     console.log(" ===== INICIO DEL SISTEMA EME-JS =====");
 
